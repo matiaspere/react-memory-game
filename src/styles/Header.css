@@ -1,0 +1,29 @@
+.Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 20px 0 20px;
+    align-items: center;
+}
+.button{
+    padding: 15px;
+    border: none;
+    background-color: rgb(231, 161, 45);
+    color: white;
+    border-radius: 12px;
+    min-width: 115px;
+    cursor: pointer;
+}
+.button:hover{
+    color:rgb(231, 161, 45);
+    background-color: white;
+}
+@media (min-width: 750px) {
+    .Header{
+        justify-content: space-evenly;
+        font-size: 1.5rem;
+    }
+    .button{
+        font-size: 1.2rem;
+    }
+}

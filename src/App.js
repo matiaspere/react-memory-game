@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Layout from "./components/Layout";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
+import React from "react";
+import AppContext from './context/AppContext';
+import useMovimientos from './hooks/useMovimientos';
+import Header from "./components/Header";
 
 function App() {
+  const movimientos = useMovimientos();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={movimientos}>
+      <Layout>
+        <Header />
+        <Main />
+        <Footer/>
+      </Layout>
+    </AppContext.Provider>
   );
 }
 
