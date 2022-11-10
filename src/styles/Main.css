@@ -45,7 +45,7 @@
   .mesa{
     grid-template-columns: repeat(4, 150px);
     place-content: center;
-    margin-top: 100px;
+    margin-top: 50px;
   }
   .tarjeta{
     width: 7rem;
