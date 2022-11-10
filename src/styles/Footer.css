@@ -53,9 +53,9 @@ p{
         margin-left: 290px;
     }
     .tiempo{
-        width: 180px;
+        min-width: 180px;
     }
     .movimientos{
-        width: 180px;
+        min-width: 180px;
     }
 }
