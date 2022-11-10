@@ -6,10 +6,9 @@
     gap: 80px;
     color: rgb(60, 75, 90);
     font-size: 1em;
-    position: fixed;
-    bottom: 60px;
-    left: 0;
-    right: 0;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 .tiempo{
     display: flex;
@@ -50,7 +49,8 @@ p{
         padding: 0 200px;
         font-size: 1.2rem;
         gap: 30px;
-
+        margin-right: 290px;
+        margin-left: 290px;
     }
     .tiempo{
         width: 180px;
