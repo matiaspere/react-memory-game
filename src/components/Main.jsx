@@ -4,8 +4,8 @@ import Card from "./Card";
 import { barajarTarjetas, comparar } from "../utils/functions";
 import AppContext from "../context/AppContext";
 import Lose from "./Lose";
-import Win from './Win';
-import Home from './Home';
+import Win from "./Win";
+import Home from "./Home";
 
 const Main = () => {
   const {
@@ -20,7 +20,7 @@ const Main = () => {
     lose,
     setWin,
     setLose,
-    setPlay
+    setPlay,
   } = React.useContext(AppContext);
 
   const totalTarjetas = [
@@ -42,14 +42,19 @@ const Main = () => {
     { image: "🍪​", descubierta: false, id: 16, acertada: false },
   ];
 
-  const tarjetasBarajadas = barajarTarjetas(totalTarjetas);
+  let tarjetasBarajadas = barajarTarjetas(totalTarjetas);
   const [cards, setCards] = React.useState(tarjetasBarajadas);
+
+  React.useEffect(() => {
+    tarjetasBarajadas = barajarTarjetas(totalTarjetas);
+    setCards(tarjetasBarajadas);
+  }, [play]);
 
   const onDescubrir = (card) => {
     let totalDescubiertas = cards.filter(
       (card) => card.descubierta === true && card.acertada === false
     );
-    if (play & totalDescubiertas.length < 2) {
+    if (play & (totalDescubiertas.length < 2)) {
       const newCards = [...cards];
       const index = newCards.findIndex((tarjeta) => tarjeta.id === card.id);
       newCards[index].descubierta = true;
@@ -75,27 +80,27 @@ const Main = () => {
         }, 500);
       }
     }
-  }, [cards])
+  }, [cards]);
 
-    // logica para determinar si hubo victoria o derrota
-    React.useEffect(() => {
-      let tarjetasPendientes = cards.filter((card) => card.acertada === false);
-      if (
-        (movimientos > 19) & (tarjetasPendientes.length > 0) ||
-        (minutos === 0 & segundos === 0 & win === false)
-      ) {
-        setLose(true);
-        setMinutos(0);
-        setSegundos(0);
-      }
-      if (tarjetasPendientes.length === 0) {
-        setWin(true);
-        setMinutos(0);
-        setSegundos(0);
-      }
-    }, [segundos])
-    
+  // logica para determinar si hubo victoria o derrota
+  React.useEffect(() => {
+    let tarjetasPendientes = cards.filter((card) => card.acertada === false);
+    if (
+      (movimientos > 19) & (tarjetasPendientes.length > 0) ||
+      (minutos === 0) & (segundos === 0) & (win === false)
+    ) {
+      setLose(true);
+      setMinutos(0);
+      setSegundos(0);
+    }
+    if (tarjetasPendientes.length === 0) {
+      setWin(true);
+      setMinutos(0);
+      setSegundos(0);
+    }
+  }, [segundos]);
 
+  
 
   React.useEffect(() => {
     cards.map((card) => {
@@ -107,9 +112,9 @@ const Main = () => {
     <>
       {!play && <Home />}
       {lose && <Lose />}
-      {win && <Win/>}
+      {win && <Win />}
       <div className="mesa">
-        {(!lose & !win ) &&
+        {!lose & !win &&
           cards.map((card) => (
             <Card card={card} onDescubrir={onDescubrir} key={card.id} />
           ))}
