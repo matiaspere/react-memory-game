@@ -13,7 +13,7 @@ const Card = ({ card, onDescubrir }) => {
         </div>
       ) : (
         <div>
-          <p className="acertada tarjeta__contenido">{card.image}</p>
+          <p className="acertada">{card.image}</p>
         </div>
       )}
     </>

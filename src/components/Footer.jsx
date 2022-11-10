@@ -45,8 +45,8 @@ const Footer = () => {
         setMinutos(0);
       }
     } else {
-      setMinutos(1);
-      setSegundos(0);
+      setMinutos(0);
+      setSegundos(30);
       setMovimientos(0);
     }
   }, [segundos, play]);
@@ -64,19 +64,10 @@ const Footer = () => {
       </div>
       <div className="movimientos">
         <p>Movimientos</p>
-        <h4>{movimientos < 10 ? "0" + movimientos : movimientos}/30</h4>
+        <h4>{movimientos < 10 ? "0" + movimientos : movimientos}/20</h4>
       </div>
     </div>
   );
 };
 
 export default Footer;
-
-// if (play) {
-//   if (minutos >= 0 && segundos >= 0) {
-//     setTimeout(actualizarCronometro, 1000);
-//   } else {
-//     setMinutos(0);
-//     setSegundos(0);
-//   }
-// }

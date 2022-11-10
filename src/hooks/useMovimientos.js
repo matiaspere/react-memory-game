@@ -16,8 +16,8 @@ const useMovimientos = () => {
     setPlay(!play);
     setWin(false);
     setLose(false);
-    setMinutos(1);
-    setSegundos(0);
+    setMinutos(0);
+    setSegundos(30);
   };
 
   return {

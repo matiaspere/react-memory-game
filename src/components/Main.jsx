@@ -5,6 +5,7 @@ import { barajarTarjetas, comparar } from "../utils/functions";
 import AppContext from "../context/AppContext";
 import Lose from "./Lose";
 import Win from './Win';
+import Home from './Home';
 
 const Main = () => {
   const {
@@ -80,7 +81,7 @@ const Main = () => {
     React.useEffect(() => {
       let tarjetasPendientes = cards.filter((card) => card.acertada === false);
       if (
-        (movimientos > 29) & (tarjetasPendientes.length > 0) ||
+        (movimientos > 19) & (tarjetasPendientes.length > 0) ||
         (minutos === 0 & segundos === 0 & win === false)
       ) {
         setLose(true);
@@ -104,10 +105,11 @@ const Main = () => {
   }, [play]);
   return (
     <>
+      {!play && <Home />}
       {lose && <Lose />}
       {win && <Win/>}
       <div className="mesa">
-        {(!lose & !win) &&
+        {(!lose & !win ) &&
           cards.map((card) => (
             <Card card={card} onDescubrir={onDescubrir} key={card.id} />
           ))}
@@ -117,39 +119,3 @@ const Main = () => {
 };
 
 export default Main;
-
-
- // React.useEffect(() => {
-  //   let totalDescubiertas = cards.filter(
-  //     (card) => card.descubierta === true && card.acertada === false
-  //   );
-
-  //   if (totalDescubiertas.length > 1 && totalDescubiertas.length < 3) {
-  //     sumarMovimiento();
-  //     if (totalDescubiertas[0].image === totalDescubiertas[1].image) {
-  //       totalDescubiertas[0].acertada = true;
-  //       totalDescubiertas[1].acertada = true;
-  //     } else {
-  //       setTimeout(() => {
-  //         totalDescubiertas[0].descubierta = false;
-  //         totalDescubiertas[1].descubierta = false;
-  //       }, 500);
-  //     }
-  //   }
-
-  //   // logica para determinar si hubo victoria o derrota
-  //   let tarjetasPendientes = cards.filter((card) => card.acertada === false);
-  //   if (
-  //     (movimientos > 29) & (tarjetasPendientes.length > 0) ||
-  //     (minutos === 0 && segundos === 0)
-  //   ) {
-  //     setLose(true);
-  //     setMinutos(0);
-  //     setSegundos(0);
-  //   }
-  //   if (tarjetasPendientes.length === 0) {
-  //     setWin(true);
-  //     setMinutos(0);
-  //     setSegundos(0);
-  //   }
-  // }, [segundos, cards]);

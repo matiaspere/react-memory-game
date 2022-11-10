@@ -51,6 +51,11 @@
     width: 7rem;
     height: 7rem;
   }
+  .acertada {
+    visibility: hidden;
+    min-width: 112px;
+    min-height: 112px;
+  }
 }
 
 .tarjeta__contenido::selection {
@@ -100,9 +105,11 @@
   }
 }
 
-/* .acertada {
-  pointer-events: none;
-} */
+.acertada {
+  visibility: hidden;
+  min-width: 72px;
+  min-height: 72px;
+}
 
 .acertada .tarjeta__contenido {
   animation: acierto 1.3s ease-in-out forwards;
